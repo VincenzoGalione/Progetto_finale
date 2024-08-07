@@ -25,7 +25,7 @@
         </div>
         
         <div class="mb-3">
-            <label for="price" class="form-label">Prezzo:</label>
+            <label for="price" class="form-label">Prezzo: €</label>
             <input type="text" class="form-control" id="price" @error('price') is-invalid @enderror wire:model.blur="price">   
             @error('price')
             <p class="text-danger">{{$message}}</p>
