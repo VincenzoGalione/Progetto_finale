@@ -1,4 +1,17 @@
 <x-layout>
+
+    @if (session()->has('errorMessage'))
+        <div class="alert alert-danger text-center  mt-3 shadow rounded w-50">
+            {{session('errorMessage')}}
+        </div>
+    @endif
+
+    @if (session()->has('message'))
+        <div class="alert alert-success mt-3  mx-auto shadow rounded w-50 d-flex text-center  ">
+            {{session('message')}}
+        </div>
+    @endif
+
     <div class="container-fluid text-center bg-body-tertiary ">
         <div class="row vh-100 justify-content-center align-items-center">
             <div class="col-12">

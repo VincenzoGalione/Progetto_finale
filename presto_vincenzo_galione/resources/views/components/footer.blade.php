@@ -8,16 +8,15 @@
             >
       <!-- Section: Social media -->
       <section
-               class="d-flex justify-content-between p-4"
+               class="d-flex justify-content-center p-4"
                style="background-color: #181817"
                >
         <!-- Left -->
-        <div class="me-5">
-          <span>Get connected with us on social networks:</span>
-        </div>
-        <!-- Left -->
-  
-        <!-- Right -->
+        <div class="me-5 col-md-5 offset-md-1 mb-3 text-center">
+          <h5>Vuoi diventare revisore?</h5>
+          <p>Cliccando il bottone farai richiesta al nostro admin</p>
+          <a href="{{route('become.revisor')}}" class="btn btn-success" >Diventa revisore</a>
+          
         <div>
           <a href="" class="text-white me-4">
             <i class="fab fa-facebook-f"></i>
