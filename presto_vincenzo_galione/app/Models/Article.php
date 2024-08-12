@@ -3,7 +3,9 @@
 namespace App\Models;
 
 
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -37,5 +39,10 @@ class Article extends Model
 
     public static function toBeRevisedCount(){
         return Article::where('is_accepted', null)->count();
+    }
+
+    public function images(): HasMany
+    {
+        return  $this->hasMany(Image::class);
     }
 }

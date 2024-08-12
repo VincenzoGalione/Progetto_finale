@@ -6,9 +6,13 @@ use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
+use Livewire\WithFileUploads;
 
 class CreateArticleForm extends Component
 {
+
+    use WithFileUploads;
+
     #[Validate('required|min:5')]
     public $title;
 
@@ -23,7 +27,11 @@ class CreateArticleForm extends Component
     
     public $article;
 
-    
+    public $images = [];
+
+    public $temporary_images;
+
+
     public function store(){
         $this->validate();
         $this->article = Article::create([
@@ -34,6 +42,12 @@ class CreateArticleForm extends Component
             'category' => $this->category,
             'user_id' => Auth::id()
         ]);
+
+        if (count($this->images) >0 ) {
+            foreach ($this->images as $image) {
+                $this->article->images()->create(['path' => $image->store('images', 'public')]);
+            }
+        }
 
         $this->reset();
         session()->flash('success', 'Articolo creato correttamente');
@@ -54,6 +68,26 @@ class CreateArticleForm extends Component
             'category.required' => 'La categoria non è stata inserita',
   
         ];
+    }
+
+    public function updatedTemporaryImages()
+    {
+        if ($this->validate([
+            'temporary_images.*' =>'image|max:1024',
+            'temporary_images' =>'max:6'
+
+        ])) {
+            foreach ($this->temporary_images as $image) {
+                $this->images[] =$image;
+            }
+        }
+    }
+
+    public function removeImage($key)
+    {
+        if(in_array($key, array_keys($this->images))){
+            unset($this->images[$key]);
+        }
     }
 
     public function render()
