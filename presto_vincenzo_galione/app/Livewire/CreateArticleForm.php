@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Jobs\GoogleVisionLabelImage;
+use App\Jobs\GoogleVisionSafeSearch;
 use App\Models\Article;
 use Livewire\Component;
 use App\Jobs\ResizeImage;
@@ -50,6 +52,9 @@ class CreateArticleForm extends Component
                 $newFileName =  "articles/{$this->article->id}";
                 $newImage = $this->article->images()->create(['path' => $image->store($newFileName, 'public')]);
                 dispatch(new ResizeImage($newImage->path, 300, 300));  
+                dispatch(new GoogleVisionSafeSearch($newImage->id));
+                dispatch(new GoogleVisionLabelImage($newImage->id));
+
             }
 
             File::deleteDirectory(storage_path('/app/livewire-tmp'));
@@ -58,6 +63,8 @@ class CreateArticleForm extends Component
         session()->flash('success', 'Articolo creato correttamente');
         $this->reset();
     }
+
+
 
     public function messages() 
     {
@@ -76,6 +83,7 @@ class CreateArticleForm extends Component
         ];
     }
 
+
     public function updatedTemporaryImages()
     {
         if ($this->validate([
@@ -89,12 +97,14 @@ class CreateArticleForm extends Component
         }
     }
 
+
     public function removeImage($key)
     {
         if(in_array($key, array_keys($this->images))){
             unset($this->images[$key]);
         }
     }
+
 
     public function render()
     {
