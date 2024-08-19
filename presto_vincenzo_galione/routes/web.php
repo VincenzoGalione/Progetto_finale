@@ -11,6 +11,10 @@ Route::get('/', [PublicController::class, 'homepage'])->name('homepage');
 //rotta per cambiare lingua
 Route::post('/lingua/{lang}', [PublicController::class, 'setLanguage'])->name('setLocale');
 
+//rotta ricerca
+Route::get('/search/article', [PublicController::class, 'searchArticles'])->name('article.search');
+
+
 
 Route::get('/create/article', [ArticleController::class, 'create'])->name('create.article');
 

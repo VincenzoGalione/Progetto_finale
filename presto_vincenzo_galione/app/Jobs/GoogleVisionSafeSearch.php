@@ -9,7 +9,7 @@ use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
-use GPBMetadata\Google\Cloud\Vision\V1\ImageAnnotator;
+
 
 class GoogleVisionSafeSearch implements ShouldQueue
 {

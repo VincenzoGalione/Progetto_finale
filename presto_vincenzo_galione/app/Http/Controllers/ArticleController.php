@@ -34,6 +34,9 @@ class ArticleController extends Controller implements HasMiddleware
         $articles = $category->articles->where('is_accepted', true);
         return view ('article.byCategory', compact('articles', 'category'));
     }
+    
+
+    
 }
 
 
