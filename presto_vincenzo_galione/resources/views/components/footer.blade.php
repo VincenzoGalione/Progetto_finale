@@ -13,9 +13,9 @@
                >
         <!-- Left -->
         <div class="me-5 col-md-5 offset-md-1 mb-3 text-center">
-          <h5>Vuoi diventare revisore?</h5>
-          <p>Cliccando il bottone farai richiesta al nostro admin</p>
-          <a href="{{route('become.revisor')}}" class="btn btn-success" >Diventa revisore</a>
+          <h5>{{__('ui.becomeRevisor')}}</h5>
+          <p>{{__('ui.clickButtom')}}</p>
+          <a href="{{route('become.revisor')}}" class="btn btn-success" >{{__('ui.revisorButtom')}}</a>
           
         <div>
           <a href="" class="text-white me-4">
