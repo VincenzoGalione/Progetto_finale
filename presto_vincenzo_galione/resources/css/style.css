@@ -18,3 +18,7 @@
     height: 120px;
     width: 120px;
 }
+
+.border-custom{
+    border: 1px  solid #888686; 
+}
