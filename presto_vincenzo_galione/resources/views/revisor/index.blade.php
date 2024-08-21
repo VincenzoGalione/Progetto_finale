@@ -35,7 +35,7 @@
                                             <div class="card-body">
                                                 <h5>Labels</h5>
                                                 @if ($image->labels)
-                                                    @foreach ($image->labels as $labels )
+                                                    @foreach ($image->labels as $label )
                                                         #{{ $label }},
                                                     @endforeach
                                                 @else
